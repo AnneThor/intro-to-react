@@ -9,9 +9,35 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.1.0/umd/react.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.1.0/umd/react-dom.development.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
 
     <script type="text/babel">
+
+
+      class StudentInfo extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            module: 2
+            }
+          this.changeModule = this.changeModule.bind(this);
+          }
+
+          changeModule() {
+            const nextModule = this.state.module + 1;
+            this.setState({module: nextModule});
+          }
+
+        render() {
+          return(
+            <div>
+              <p>Student name is {this.props.name}</p>
+              <button onClick={this.changeModule}>Student is in module {this.state.module}</button>
+            </div>
+            );
+          }
+
+        }
 
       class Counter extends React.Component {
         constructor(props) {
@@ -27,6 +53,7 @@
               <h2>Current program: {this.props.label}</h2>
               <h3>Current week: {this.state.number}</h3>
               <p>Current Date: {this.props.date.toLocaleDateString()}</p>
+              <StudentInfo name="Anne"/>
             </div>
           );
         }
@@ -44,7 +71,8 @@
       ReactDOM.render(
         <Counter
           date={info.date}
-          image={info.image}/>,document.getElementById('app')
+          image={info.image}/>,
+        document.getElementById('app')
       );
 
     </script>
